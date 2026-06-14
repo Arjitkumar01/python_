@@ -89,7 +89,7 @@
 # def repeat_string(s, n):
 #     a= s*n
 #     return a
-# print(repeat_string("Baby I lovee uhh\n",5))
+# print(repeat_string("Hellon world\n",5))
 
 # Q10. Write a function is_positive(n) that returns "Positive",
 #      "Negative", or "Zero" based on the value of n.
@@ -149,12 +149,29 @@
 # Q14. Write a function find_max(lst) that returns the largest
 #      element in a list WITHOUT using the built-in max().
 
+# def find_max(lst:list):
+#     lst.sort()
+#     print(lst[-1])
+    
+# find_max([2,3,4,7,9,44,6,1])
+
 # Q15. Write a function remove_duplicates(lst) that returns a
 #      new list with duplicate elements removed.
+
+# def remove_duplicates(lst:list):
+#     new_list=set(lst)
+#     final_list=list(new_list)
+    
+#     return final_list
+
+# print(remove_duplicates([2,7,4,2,6,7,5,6,8,6]))
 
 # Q16. Write a function calculator(a, b, op) that performs
 #      addition, subtraction, multiplication, or division
 #      based on the op argument ('+', '-', '*', '/').
+
+
+    
 
 # def calculator(a , b , op):
 #     if op=='+':
@@ -172,23 +189,58 @@
 # Q17. Write a function count_words(sentence) that returns the
 #      number of words in a sentence.
 
-def count_words(sentence):
-    words = sentence.split()
-    return len(words)
+# def count_words(sentence):
+#     words = sentence.split()
+#     return len(words)
 
-print(count_words("Hey arjit how are you"))
+# print(count_words("Hey arjit how are you"))
 
 
 # Q18. Write a function power(base, exp) that calculates base^exp
 #      using recursion (without using ** operator).
 
+# def power(base,exp):
+#     if exp==0:
+#         return 1
+#     elif exp == 1:
+#         return base
+    
+#     else: 
+#         return base * power(base,exp-1)
+
+# print(power(2,3))
+
 # Q19. Write a function flatten(lst) that takes a nested list
 #      like [1, [2, 3], [4, [5]]] and returns [1, 2, 3, 4, 5].
+
+def flatten(lst):
+    result = []
+    for i in lst:
+        if isinstance(i, list):
+            result.extend(flatten(i))
+        else:
+            result.append(i)
+    return result
+print(flatten([1, [2, 3], [4, [5]]]))
+    
+    # lst = [1] 
+    # lst2 = [2,3]
+# [1,2,3]
+
+    
 
 # Q20. Write a function apply_twice(func, value) that takes a
 #      function and a value, applies the function twice, and
 #      returns the result.
 #      Example: apply_twice(square, 3) → square(square(3)) → 81
+
+def apply_twice(func, value):
+    return func(func(value))   
+
+print(apply_twice(lambda x: x**2, 3))  
+
+
+
 
 
 # ─────────────────────────────────────────────
@@ -249,6 +301,8 @@ print(count_words("Hey arjit how are you"))
 #     lst = [(1, 3), (4, 1), (2, 2)]  →  [(4,1), (2,2), (1,3)]
 
 # B2. Use a lambda with filter() to get all even numbers from a list.
+
+
 
 # B3. Use a lambda with map() to convert a list of strings to uppercase.
 
