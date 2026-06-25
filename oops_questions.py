@@ -567,6 +567,9 @@ print("Total Price: ₹", cart.total())
 #      - UPI         → prints "Paid ₹X via UPI"
 #      - NetBanking  → prints "Paid ₹X via Net Banking"
 
+# from abc import ABC,abstractmethod
+# class 
+
 # Q22. Create an abstract class Notification with abstract method send().
 #      Create subclasses:
 #      - EmailNotification(to, subject)
