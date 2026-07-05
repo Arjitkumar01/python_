@@ -200,3 +200,21 @@
 # sum = add(5, 3)
 
 # print(sum) 
+
+# --------------------------------------------------------------------------------------------------------------------------------
+arr=[2,3,5,6,7,8,9,7,5]
+target = 7
+
+def linear_search(arr,target):
+    
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i
+        
+print(linear_search(arr,target))
+    
+        
+        
+    
+
+
