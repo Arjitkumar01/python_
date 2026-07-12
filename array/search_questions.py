@@ -236,4 +236,34 @@
 #                   | one            |
 #  Use when         | Small / unsorted| Large sorted arrays
 #
-# ─────────────────────────────────────────────
+# ───────────────────────────────────
+
+
+# arr = [1,2,3,4,5]
+
+# old_value=32
+# new_value=30
+# n=len(arr)
+
+# for i in range(n):
+#     if arr[i]==old_value:
+#         arr[i]=new_value
+#         break
+# else:
+#     print("element not found")
+# print(arr)
+
+arr=[11,22,44,5,99,666,55]
+minimum=arr[0]
+maximum=arr[0]
+
+for i in range(1,len(arr)):
+    if minimum>arr[i]:
+        minimum=arr[i]
+print("minimum:",minimum)
+
+for i in range(1,len(arr)):
+    if maximum<arr[i]:
+        maximum=arr[i]
+print("maximum:",maximum)
+
