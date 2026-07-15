@@ -182,16 +182,7 @@ class Linked_list:
             
         self.head = prev
         
-        
-        
-            
-        
-        
-    
-    
-        
-               
-            
+
 l1=Linked_list()
 l1.insert_begin(101)
 l1.insert_begin(202)

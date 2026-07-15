@@ -244,37 +244,37 @@
 
 # PREFIX SUM 
 # normal approch 
-# arr=[1,2,3,4,5,6]
+arr=[1,2,3,4,5,6]
 
-# left=1
-# right = 3
-# total=0
+left=1
+right = 3
+total=0
 
-# for i in range(left,right+1):
-#     total+=arr[i]
+for i in range(left,right+1):
+    total+=arr[i]
     
-# print(f"total :{total}")
+print(f"total :{total}")
 
 # preffix sum idea:
 
-# arr=[1,2,3,4,5,6]
+arr=[1,2,3,4,5,6]
 
-# prefix=[0]* len(arr)
+prefix=[0]* len(arr)
 
-# prefix[0]=arr[0]
-# for i in range(1,len(arr)):
-#     prefix[i]=prefix[i-1] + arr[i]
+prefix[0]=arr[0]
+for i in range(1,len(arr)):
+    prefix[i]=prefix[i-1] + arr[i]
     
-# left =1
-# right=3
+left =1
+right=3
 
-# if left==0:
-#     total=prefix[right]
-# else:
-#     total=prefix[right] - prefix[left-1]
+if left==0:
+    total=prefix[right]
+else:
+    total=prefix[right] - prefix[left-1]
     
-# print(f"preffixed array :{prefix}")
-# print(f"total : {total}")
+print(f"preffixed array :{prefix}")
+print(f"total : {total}")
 
 
 # SLIDING WINDOW TECHNIQUE:
@@ -453,10 +453,301 @@ while left <right:
 print(f"answer:{max_water}")
     
 
+#========================================================== Trapping rain water problem===========================================================
+
+
+# BRUTE FORCE APPROCH 
+
+  
+
+# height = [3, 0, 2, 0, 4]
+# height = [2, 0, 2]
+# height = [3, 0, 1, 3]
+height = [4, 2, 0, 3, 2, 5]
+
+trapped_water=0
+water=0
+
+for i in range(len(height)):
+    
+    left_max=height[i]
+    for j in range(i):
+        if height[j]>left_max:
+            left_max=height[j]
+        
+    
+    right_max=height[i]
+    for k in range(i+1,len(height)):
+        if height[k]>right_max:
+            right_max=height[k]
+            
+            
+    water=min(left_max,right_max)-height[i]
+    
+    trapped_water+=water
+    
+print(f"water trapped:{trapped_water}")
+        
+    
+
+# PREFFIX ARRAYS APPROCH
+
+height = [4, 2, 0, 3, 2, 5]
+trapped_water=0
+
+
+left_max=[0]*len(height)
+right_max=[0]*len(height)
+
+left_max[0]=height[0]
+for i in range(1,len(height)):
+    # if left_max[i]<height[i+1]:
+    #     left_max[i+1]=height[i+1]
+    # else:
+    #     left_max[i+1]=left_max[i]
+    left_max[i]=max(left_max[i-1],height[i])
+        
+right_max[len(height)-1]=height[len(height)-1]
+for j in range(len(height)-2,-1,-1):
+    # if right_max[j]<height[j-1]:
+    #     right_max[j-1]=height[j-1]
+    # else:
+    #     right_max[j-1]=right_max[j]
+    right_max[j]=max(right_max[j+1],height[j])
+        
+for k in range(len(height)):
+    water=min(left_max[k],right_max[k])-height[k]
+    
+    trapped_water+=water
+print(f"trapped water :{trapped_water}")
+
+
+# two pointer approch
+
+        
+
+height = [4, 2, 0, 3, 2, 5]
+trapped_water=0
+
+left=0
+right=len(height)-1
+
+left_max=0
+right_max=0
+
+while left<right:
+    
+    if height[left]<=height[right]:
+        left_max=max(left_max,height[left])
+        trapped_water+=left_max-height[left]
+        left+=1
+        
+        
+    else:
+        right_max=max(right_max,height[right])
+        trapped_water+=right_max -height[right]
+        right-=1
+            
+        
+print(trapped_water)
+
+# max sum of sub arrays :
+
+# BRUTE FORCE:
+
+# arr=[-2,-3,4,-1,-2,1,5,-3]
+
+
+# maximum=float('-inf')
+
+# for i in range(len(arr)):
+#     for j in range(i,len(arr)):
+#         sum=0
+#         for k in range(i,j+1):
+#             sum+=arr[k]
+#         maximum=max(sum,maximum)
+# print(f"maximum no: {maximum}")
+            
+# small optimisation
+arr=[-2,-3,4,-1,-2,1,5,-3]
+
+
+maximum=float('-inf')
+
+for i in range(len(arr)):
+    current_sum=0
+    for j in range(i,len(arr)):
+        current_sum+=arr[j]
+        maximum=max(current_sum,maximum)
+print(f"maximum no: {maximum}")
+
+# preffix sum
+
+arr=[-2,-3,4,-1,-2,1,5,-3]
+maximum=float('-inf')
+
+prefix=[0]*len(arr)
+
+prefix[0]=arr[0]
+current_sum=0
+
+for i in range(1,len(arr)):
+    prefix[i]=prefix[i-1]+arr[i]
+    
+for j in range(len(arr)):
+    for k in range(j,len(arr)):
+        
+        if j==0:
+            current_sum=prefix[k]
+        else:
+            current_sum=prefix[k]-prefix[j-1]
+            
+        maximum=max(current_sum,maximum)
+            
+    
+print(f"maximum : {maximum}")
+
+# kadane's algorithm
+
+
+arr=[3,-4,5,4,-1,7,-8]
+
+current_sum=0
+maximum=float('-inf')
+
+for i in range(len(arr)):
+    current_sum+=arr[i]
+    maximum=max(maximum,current_sum)
+    
+    if current_sum<0:
+        current_sum=0
+
+
+print(f"maximum sum:{maximum}")
+
+# to print the subarray
+
+
+arr=[3,-4,5,4,-1,7,-8]
+
+current_sum=0
+maximum=float('-inf')
+start=0
+ans_start=0
+end=0
+
+for i in range(len(arr)):
+    current_sum+=arr[i]
+    
+    if current_sum >maximum:
+        maximum=current_sum
+        ans_start=start
+        end=i
+        
+    
+    if current_sum<0:
+        current_sum=0
+        start=i+1
+
+
+print(f"Sub Array:{arr[ans_start:end+1]}")
+
+# PAIR SUM
+
+arr=[2,7,11,15]
+target=18
+
+for i in range(len(arr)):
+    for j in range(i+1,len(arr)):
+        if arr[i]+arr[j]== target:
+            print(f"pair found:{arr[i]},{arr[j]}")
+        
+
+# optimal approch:
+
+arr=[2,7,11,15]
+target=18
+
+left=0
+right=len(arr)-1
+
+while left<right:
+    if arr[left]+arr[right]==target:
+        print(f"pair found:{arr[left]},{arr[right]}")
+        break
+    
+    elif arr[left] +arr[right] > target:
+        right-=1
+    else:
+        left +=1
+else:
+    print(f"pair not found")
+    
+#    ============================================================= # MAJORITY ELEMENTS================================================================
+# using hashing
+arr=[1,2,2,3,3,3,3,3,3,3,3,3,3,2,1,2]
+
+frequency = {}
+found=False
+
+for num in arr:
+    if num in frequency:
+        frequency[num]+=1
+    else:
+        frequency[num]=1
+        
+
+for key in frequency:
+    if frequency[key] >len(arr)//2:
+        print(f"majority element: {key}")
+        found=True
+        break
+        
+if not found:
+    print("no majority element:")
+
+# BRUTE FORCE
+
+arr=[1,2,2,1,2]
+
+for i in range(len(arr)):
+    count=0
+    
+    for j in range(len(arr)):
+        if arr[i]==arr[j]:
+            count+=1
+            
+    if count>len(arr)//2:
+        print(f"majority element:{arr[i]}")
+        break
+    
+else:
+    print(f"element not found")
+
+
+# MOORE'S VOTING ALGO
+
+arr=[2,2,2,2,1,2]
+
+candidate=None
+count=0
+
+for num in arr:
+    if count == 0:
+        candidate= num 
+        
+    if num == candidate:
+        count+=1
+    else:
+        count-=2
+        
+print(f"majority element: {candidate}")
+
 
         
     
     
+    
         
-        
+    
         
