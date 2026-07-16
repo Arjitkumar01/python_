@@ -94,6 +94,24 @@ class Linked_list:
             return
         new_node.next=current.next
         current.next=new_node
+    def add_next_to_data(self,data,key):
+        new_node=Node(data)
+        if self.head==None:
+            print("list is empty")
+            
+            
+        current=self.head
+        
+        while current is not None and current.data!=key:
+            current=current.next
+        
+        if current is None :
+            print("inavalid key")
+            
+        new_node.next=current.next
+        current.next=new_node
+        
+        
         
     def remove_begin(self):
         if self.head is None:
@@ -200,7 +218,7 @@ l1.insert_begin(505)
 l1.search(202)
 l1.count()
 
-# l1.Display()
+l1.Display()
         
     
     

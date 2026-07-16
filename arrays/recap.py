@@ -118,46 +118,46 @@
 # FREQUENCY COUNT
 # 1-WITHOUT USING DICTIONARY
 
-# arr=[1,2,3,2,4,2,3,1,2]
-# target =2
-# count = 0
-# for i in arr:
-#     if i == target:
-#         count +=1
+arr=[1,2,3,2,4,2,3,1,2]
+target =2
+count = 0
+for i in arr:
+    if i == target:
+        count +=1
 
-# print(count)
+print(count)
 
 
 
 
 # 2-NESTED LOOPS
-# arr=[1,2,3,2,4,2,3,1,2]
-# visited =[]
+arr=[1,2,3,2,4,2,3,1,2]
+visited =[]
 
-# for i in range(len(arr)):
-#     if arr[i] in visited:
-#         continue
-#     count=0
-#     for j in range(len(arr)):
-#         if arr[i]==arr[j]:
-#             count +=1
+for i in range(len(arr)):
+    if arr[i] in visited:
+        continue
+    count=0
+    for j in range(len(arr)):
+        if arr[i]==arr[j]:
+            count +=1
         
-#     print(f"{arr[i]} --> {count}")
-#     visited.append(arr[i])
+    print(f"{arr[i]} --> {count}")
+    visited.append(arr[i])
 
 
 # 3-USING A DICTIONARY
-# arr=[1,2,3,2,4,2,3,1,2]
-# freq={}
+arr=[1,2,3,2,4,2,3,1,2]
+freq={}
 
-# for num in arr:
-#     if num in freq:
-#         freq[num]+=1
-#     else:
-#         freq[num]=1
+for num in arr:
+    if num in freq:
+        freq[num]+=1
+    else:
+        freq[num]=1
         
-# for key,value in freq.items():
-#     print(f"{key}-->{value}")
+for key,value in freq.items():
+    print(f"{key}-->{value}")
         
 
 
@@ -739,13 +739,92 @@ for num in arr:
     if num == candidate:
         count+=1
     else:
-        count-=2
+        count-=1
         
 print(f"majority element: {candidate}")
 
 
+
+arr=[2,3,4,2,2,2,2,2,2,2]
+candidate=None
+count=0
+
+for num in arr:
+    if count==0:
+        candidate=num
+    if num == candidate:
+        count+=1
+    else:
+        count-=1
         
+print("majority element: {candidate}")
+
+
+        
+#  BUY AND SELL STOCK 
+
+# brute force:
+
+prices = [7,1,5,3,6,4]
+
+max_profit=0
+for i in range(len(prices)):
+    profit=0
+    for j in range(i+1,len(prices)):
+        profit=prices[j]-prices[i]
+        
+        max_profit=max(max_profit,profit)
+        
+if max_profit<0:
+    print(0)
+else:
+    print(max_profit)
     
+    
+    
+# optimal approch 
+
+prices = [7,1,5,3,6,4]
+profit=0
+max_profit=0
+min_price=prices[0]
+for i in range(1,len(prices)):
+    min_price=min(min_price,prices[i])
+    profit = prices[i]-min_price
+    
+    max_profit=max(max_profit,profit)
+
+print(max_profit)
+
+
+# leader of array
+
+arr = [5, 10, 20, 15, 8, 3]
+
+answer=[]
+max_value=arr[len(arr)-1]
+answer.append(max_value)
+for i in range(len(arr)-2,-1,-1):
+    if max_value < arr[i]:
+        answer.append(arr[i])
+        max_value=arr[i]
+    
+print(answer[::-1])
+    
+#  product of array except self
+
+arr=[1,2,3,4]
+
+prefix=[0]*len(arr)
+
+prefix[0]=arr[0]
+
+for i in range(1,len(arr)):
+    prefix[i]=prefix[i-1] * arr[i]
+    
+for i in range(len(arr)):
+    
+        
     
     
         

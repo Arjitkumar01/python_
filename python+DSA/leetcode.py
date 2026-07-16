@@ -86,8 +86,3 @@
     
 #Qno 2
 
-class Solution:
-    def removeDuplicates(self, nums: list[int]) -> int:
-        for i in range(len(nums)):
-            target=nums[i]
-            for j in range(i+1,len)
